@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%block content1%}
+
+<style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+        }
+</style>
+<h3>Ranks obtained from each feature selection methods</h3>
+<table style="margin-left: auto;margin-right: auto;">
+  {% for key, value in feature_selection.items %}
+      <tr>
+          <th> {{ key }} </th>
+          {%for ele in value%}
+          <td style="text-align: center;"> {{ele}} </td>
+          {%endfor%}
+      </tr>
+  {% endfor %}
+</table><br>
+<hr>
+<h3>Aggregated Rank</h3>
+<table style="margin-left: auto;margin-right: auto;">
+  {% for key, value in AggRank.items %}
+      <tr>
+          <th style="text-align: center;"> {{ key }} </th>
+          <td> Rank {{ value}} </td>
+         
+      </tr>
+  {% endfor %}
+</table><br>
+<hr>
+<h3>Total number of features : {{no_of_features}}</h3>
+<h3>Number of features selected : {{no_of_selected_features}}</h3><hr>
+<h3>Selected Features:</h3>
+{% for ele in Selectedfeatures %} 
+        <li style="text-align: center">{{ele}}</li> 
+{% endfor %} 
+{% csrf_token %}
+{%endblock%}
+
+
+
+

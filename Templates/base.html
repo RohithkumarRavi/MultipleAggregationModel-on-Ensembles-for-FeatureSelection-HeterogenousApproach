@@ -1,0 +1,139 @@
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <title>Ensemble Feature Selection</title>
+{%load static%}
+<!-- CSS Link -->
+<link rel="stylesheet" href="static/style1.css">
+
+</head>
+
+<body>
+  <div class="topnav">
+  <a class="active" href="homereturn">Home</a>
+  <a href="aboutfeatures" style="color: white;">About Feature Selection Methods</a>
+  <a href="AboutClassifier" style="color: white;">About Classifiers</a>
+  <a href="https://archive.ics.uci.edu/ml/index.php" style="color: white;">Browse data</a>
+  <a href="#contact" style="color: white;" q>Contact</a>
+  </div>
+
+            <div id="file1_progress" class="progress progress-striped active shiny-file-input-progress">
+              <div class="progress-bar"></div>
+            </div>
+        <section class="main">
+
+
+        <!-- Left Section -->
+        <div class="left">
+          <form name = "upload" action = {% url 'upload' %} enctype ="multipart/form-data" method = "POST" >
+            {% csrf_token %}
+            <h3>Choose a CSV file</h3>
+            <input type="file" id="browse" name ="fileupload"/><br>
+            <input type = "submit" style="text-align: center;">
+          </form>
+          <hr>
+          <form name = "features" action = {% url 'features' %}  method = "POST" >
+            {% csrf_token %}
+            <h3>Feature Selection Methods  :</h3>
+            <div style="align: left;padding: 5px">
+                <input type="checkbox" name="FeatureSelection" value="MRMR_featureSelection" > MRMR_featureSelection<br><br>
+                <input type="checkbox" name="FeatureSelection" value="FBCF_featureSelection"> FBCF_featureSelection <br><br>
+                <input type="checkbox" name="FeatureSelection" value="MIFS_featureSelection"> MIFS_featureSelection <br><br>
+                <input type="checkbox" name="FeatureSelection" value="DISR_featureSelection"> DISR_featureSelection <br><br>
+                <input type="checkbox" name="FeatureSelection" value="ICAP_featureSelection"> ICAP_featureSelection<br><br>
+                <input type="checkbox" name="FeatureSelection" value="JMI_featureSelection"> JMI_featureSelection<br><br>
+                <input type="checkbox" name="FeatureSelection" value="reliefF_featureSelection"> reliefF_featureSelection<br><br>
+                <input type="checkbox" name="FeatureSelection" value="SPEC_featureSelection"> SPEC_featureSelection <br><br>
+                <input type="checkbox" name="FeatureSelection" value="fisher_score_featureSelection"> fisher_score_featureSelection<br><br>
+                
+                <hr>
+                <h3>Select Rank Aggregation method</h3><br>
+                <select name="RAmethods" id="RA">
+                  <option value="Borda">Borda Aggregation</option>
+                  <option value="Robust">Robust Rank Aggregation</option>
+                  <option value="StabilitySelection">Stability Selection</option>
+                  <option value="Exponential weighting">Exponential weighting</option><br><br>
+                </select>
+                <br>
+                <br>
+                <br>
+                <hr>
+                <h3>Threshold Values:</h3>
+                <input type="radio" name="ThresholdValues" value="25 percent features"> 25 percent features<br><br>
+                <input type="radio" name="ThresholdValues" value="50 percent features"> 50 percent features<br><br>
+                <input type="radio" name="ThresholdValues" value="75 percent features"> 75 percent features<br><br>
+            </div>
+            <div style="text-align: center">
+              <input class="button" type="submit">
+            </div>
+          </form>     
+            
+          <script>$(document).ready(function() {setTimeout(function() {shinyBS.addTooltip('runs', 'tooltip', {'container': 'body', 'placement': 'right', 'trigger': 'hover', 'title': 'More repetitions mean more stable results. But it also takes more computation time'})}, 500)});</script>
+          <br/>
+        </div>
+        <div class = "middle">
+          {% block content1%}
+          {%endblock%}
+        </div>
+
+      <!-- Right Section -->
+        <div class="right">
+          <form name = "classifier" action = {% url 'classifier' %}  method = "POST" >
+            {% csrf_token %}
+            <h3>Choose a classifier</h3>
+            <div style="text-align: left;padding: 5px">
+              <input type="radio" name="Classifier" value="Logistic Regression"> Logistic Regression<br><br>
+              <input type="radio" name="Classifier" value="SVM"> SVM<br><br>
+              <input type="radio" name="Classifier" value="BernoulliNB"> BernoulliNB<br><br>
+              <input type="radio" name="Classifier" value="GaussianNB"> GaussianNB<br><br>
+              <input type="radio" name="Classifier" value="DecisionTree"> DecisionTree<br><br>
+              <input type="radio" name="Classifier" value="RandomForest"> RandomForest<br><br>
+              <input type="radio" name="Classifier" value="ExtraTreeClassifier"> ExtraTreeClassifier<br><br>
+              <input type="radio" name="Classifier" value="AdaBoost"> AdaBoost<br><br>
+              <input type="radio" name="Classifier" value="GradientBoosting"> GradientBoosting<br><br>
+              <input type="radio" name="Classifier" value="BaggingClassifier"> BaggingClassifier<br><br>
+              <div style="text-align: center">
+                <input type = "submit" style="width: 150px;height:25px">
+              </div>
+            </div>
+          </form>
+          <br>
+          <hr>  
+          <h3>Data Visualization</h3>
+          <hr>
+          <div style="text-align: center;padding: 10px">
+            <form name = "scatter" action = {% url 'scatter' %}  method = "POST" >
+              {% csrf_token %}
+              <button type="submit" name="Scatter" value="Scatter" style="width: 150px;height:25px">&nbsp;Scatter plot</button><br>
+            </form>
+            <form name = "box" action = {% url 'box' %}  method = "POST" >
+              {% csrf_token %}
+              <button type="submit" name="Box" value="Box" style="width: 150px;height:25px">&nbsp;Box plot</button><br>
+            </form>
+            <form name = "violin" action = {% url 'violin' %}  method = "POST" >
+              {% csrf_token %}
+              <button type="submit" name="Violin" value="Violin" style="width: 150px;height:25px">&nbsp;Violin plot</button><br>
+            </form>
+            <form name = "dist" action = {% url 'dist' %}  method = "POST" >
+              {% csrf_token %}
+              <button type="submit" name="Histogram" value="Histogram" style="width: 150px;height:25px">&nbsp;Histogram plot</button><br>
+            </form>
+            <form name = "swarm" action = {% url 'swarm' %}  method = "POST" >
+              {% csrf_token %}
+              <button type="submit" name="Swarm" value="Swarm" style="width: 150px;height:25px">&nbsp;Swarm plot</button><br>
+            </form>
+          </div>
+          {%block content2%}
+          {%endblock%}
+        </div>
+
+    </section>
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- Javascript File -->
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>

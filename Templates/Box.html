@@ -1,0 +1,42 @@
+{%extends 'Visualbase.html'%}
+{% block contentleft%}
+<h3>Features:</h3>
+{% for ele in Features %} 
+        <li>{{ele}}</li> 
+{% endfor %}
+{%endblock%}
+{% block contentmiddle%}
+<h3> Box Plot</h3>
+{%endblock%}
+{% block contentright%}
+<h3>Type Feature</h3>
+<form name = "boxplot" action = {% url 'boxplot' %}  method = "POST" >
+    {% csrf_token %}
+    Enter attribute : <input type = "text" name = "column1" autocomplete="off"><br><br>
+    <div style="text-align: center;">
+        <input type = "submit" style="text-align: center;">
+    </div>
+</form>
+<hr>
+<br>
+<h3>Other Plots</h3>
+<br>
+<div style="text-align: center;padding: 10px">
+    <form name = "scatter" action = {% url 'scatter' %}  method = "POST" >
+      {% csrf_token %}
+      <button type="submit" name="Scatter" value="Scatter" style="width: 150px;height:25px">&nbsp;Scatter plot</button><br>
+    </form>
+    <form name = "violin" action = {% url 'violin' %}  method = "POST" >
+      {% csrf_token %}
+      <button type="submit" name="Violin" value="Violin" style="width: 150px;height:25px">&nbsp;Violin plot</button><br>
+    </form>
+    <form name = "dist" action = {% url 'dist' %}  method = "POST" >
+      {% csrf_token %}
+      <button type="submit" name="Histogram" value="Histogram" style="width: 150px;height:25px">&nbsp;Histogram plot</button><br>
+    </form>
+    <form name = "swarm" action = {% url 'swarm' %}  method = "POST" >
+      {% csrf_token %}
+      <button type="submit" name="Swarm" value="Swarm" style="width: 150px;height:25px">&nbsp;Swarm plot</button><br>
+    </form>
+  </div>
+{%endblock%}

@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>FEATURE SELECTION METHODS</title>
+        <style>
+            h1 {
+                border-bottom: 1px solid;
+                font-size:38px;
+                font-family:"segoe ui";
+                font-weight: 700;
+            }
+            h2{
+
+            }
+            .div1{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div2{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div3{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div4{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div5{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div6{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div7{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            .div8{font-size:17.2px;
+                   font-family: 'segoe ui';
+            }
+            #p1{
+                font-size:23px;
+                font-family:'segoe ui';
+                font-weight: 650;
+                text-align: center;
+            }
+            .center1 {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .center2 {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>   
+    </head>
+
+    <body bgcolor="#DCDCDC">
+        <h1>FEATURE SELECTION METHODS</h1>
+        <div class="div1">
+            <h2 style="border-bottom: 1px solid;"><span>Minimum Redundancy Maximum Relevance(MRMR)</span></h2>
+            <p>
+                The mRMR is a feature selection approach that
+                tends to select features with a high correlation with the
+                class (output) and a low correlation between themselves. 
+                For continuous features, the F-statistic can be used to calculate correlation with the class (relevance) and the
+                Pearson correlation coefﬁcient can be used to calculate correlation between features (redundancy). Thereafter, features are selected one by one by applying a greedy 
+                search to maximize the objective function, which is a
+                function of relevance and redundancy. Two commonly used types of the objective function are MID (Mutual Information Difference criterion) and MIQ (Mutual Information Quotient criterion) representing the difference or the quotient of relevance and redundancy, respectively.In a set S of N features, the relevance of the features (D) is 
+                computed as follows: 
+            </p>
+            <p>
+                The mRMR score for the set S is deﬁned as (D - R). The goal is to ﬁnd the subset of features with a maximum
+                value of (D-R). In practice, however, we perform an incremental search (aka forward selection) in which, at each step, we add the feature that yields the greatest mRMR. 
+            </p>
+        </div>
+        <div class="div2">
+            <h2 style="border-bottom: 1px solid;"><span>Fast Correlation Based Filter(FCBF)</span></h2>
+            <p> The FCBF package is a R implementation of an algorithm developed by Yu and Liu, 2003 : </p>
+            <p>Feature SelectionforHigh-DimensionalData:AFastCorrelationBased Filter Solution. It selects features in a classiﬁerindependent manner, selecting features with high correlation with the target variable, but little correlation with other variables. Notably, the correlation used here is not the classical Pearson or Spearman correlations, but Symmetrical Uncertainty (SU).
+            </p>
+            <p>The symmetrical uncertainty is based on information theory, drawing from the concepts of Shannon entropy and information gain. 
+                Initially, the algorithm selects features correlated above a given threshold by SU with the class variable. After this initial ﬁltering,
+                 it detects predominant correlations of features with the class. The deﬁnition is that, for a predominant feature “X”, no other feature is more correlated to “X” than “X”” is to the class.</p>  
+            
+            <p>
+                The features more correlated with X than with the class are then tested, and either X, or any other feature from this correlation group, emerges as the predominant correlation feature. 
+            </p>
+            <p>Below is an example logistic regression equation:</p>
+            <p>
+                Where y is the predicted output, b0 is the bias or intercept term and b1 is the coefficient for the single input value (x). Each column in your input data has an associated b
+                coefficient (a constant real value) that must be learned from your training data. The actual representation of the model that you would
+                store in memory or in a file are the coefficients in the equation (the beta value or b’s).
+            </p>
+        </div>    
+        <div class="div3">
+            <h2 style="border-bottom: 1px solid;"><span> Mutual Information-based Feature Selection(MIFS)</span></h2>
+            <p> Mutual information is a measure between two (possibly multi-dimensional) random variables X and Y, 
+                that quantiﬁes the amount of information obtained about one random variable, through the other random variable. With p(x,y) as the joint probability density function of X and Y, 
+                and where p(x) and p(y) are the marginal density functions. The mutual information determines how similar the joint distribution p(x,y) is to the products of the factored marginal distributions.
+                 If X and Y are completely unrelated (and therefore independent), then p(x,y) would equal p(x)p(y), and this integral would be zero. 
+            </p>
+            <p>When it comes to feature selection, we would like to maximise the mutual information between the subset of selected features XS and the target variable y</p>
+            <p><b>S =argmaxSI(XS;y),s.t.abs(S)=k</b>,</p>
+            </p>
+            <p>
+                where k is the number of features we want to select. 
+                This quantity is called the joint mutual information, and maximising this quantity is an NP-hard optimisation problem,
+                 because the set of possible combinations of features grows exponentially. 
+            </p>
+        </div>
+        <div class="div4">
+            <h2 style="border-bottom: 1px solid;"><span>Double Input Symmetrical Relevance(DISR)</span></h2>
+            <p>This criterion combines two well known in-tuitions of feature selection: ﬁrst, a combination of variables can return moreinformation on the output class than the sum of the information returned byeach of the variables taken individually.
+                 The DISR criterion can be used to select among a ﬁnite number of alternative subsets the one expected to return the maximum amount of information on the output class. </p>
+        </div>
+        <div class="div5">
+            <h2 style="border-bottom: 1px solid;"><span>Interaction Capping(ICAP)</span></h2>
+            <p>
+                In interaction capping (ICAP) feature selection algorithm,features are sorted using the interaction of their
+                term with some other term using the information capping. 
+            </p>
+        </div>
+        <div class="div6">
+            <h2 style="border-bottom: 1px solid;"><span>Fischer Score</span></h2>
+            <p>:Fisher score is one of the most widely used supervised feature selection methods. 
+                It selects each feature independently according to their scores under the Fisher criterion, which leads to a suboptimal subset of features.
+                 It aims at ﬁnding an subset of features, which maximize the lower bound of traditional Fisherscore.The resulting feature selection problem is a mixed integer programming, which can be reformulated as a quadratically constrained linear programming (QCLP). It is solved by cutting plane algorithm, in each iteration of which a multiple kernel learning problem is solved alternatively by multivariate ridge regression and projected gradient descent. 
+            </p>
+        </div>
+        <div class="div7">
+            <h2 style="border-bottom: 1px solid;"><span>Trace Ratio</span></h2>
+            <p> Recently, the trace ratio criterion is proposed to directly select the global optimal feature subset,
+                 the feature importance are measured by a trace ratio norm.
+                  It builds two afﬁnity matrices S w and S b to characterize within-class (local afﬁnity) and between-class (global afﬁnity) data similarity. 
+            </p>
+            <p>The basic idea is to maximize data similarity for the instances from the same class (or close to each other) while minimize data similarity for the instances from different classes (or far away from each other).
+                 The larger the score, the more important the feature set is. The trace ratio criterion score provides a general framework for feature selection 
+            </p>
+        </div>
+        <div class="div8">
+            <h2 style="border-bottom: 1px solid;"><span>ReliefF</span></h2>
+            <p>
+                Relief and its multi-class variant ReliefF are supervised ﬁlter algorithms that select features to separate instances from different classes. 
+            </p>
+           
+        </div>
+    </body>
+</html>

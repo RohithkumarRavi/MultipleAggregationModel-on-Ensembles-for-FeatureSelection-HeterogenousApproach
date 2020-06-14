@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{%block content1%}
+{% load static %}
+<h1>Accuracy for {{Classifier}}:</h1>
+<h1>{{Result}} (For Selected Features)</h1>
+<h1>{{FullDataResult}} (For original data)</h1>
+<hr>
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+    }
+</style>
+<h1>Confusion Matrix</h1>
+<div style="text-align:center">
+  <img src={% static 'Images/confusion.png' %}>
+</div>
+<br><br>
+<hr>
+<h1>Classification scores</h1>
+<table style="margin-left: auto;margin-right: auto;">
+    {% for key, value in Score.items %}
+        <tr>
+            <th> {{ key }} </th>
+            {%for ele in value%}
+            <td> {{ ele}} </td>
+            {%endfor%}
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<hr>
+<h1>Receiver Operating Characteristics</h1>
+<div style="text-align:center">
+  <img src={% static 'Images/ROC.png' %}>
+</div>
+{%endblock%}
